@@ -8,6 +8,10 @@
 // <webots/DistanceSensor.hpp>, <webots/Motor.hpp>, etc.
 // and/or to add some other includes
 #include <webots/Robot.hpp>
+#include <webots/Motor.hpp>
+
+
+constexpr TIME_STEP 64
 
 // All the webots classes are defined in the "webots" namespace
 using namespace webots;
@@ -46,3 +50,4 @@ int main(int argc, char **argv) {
   };
 
   // Enter here exit cleanup code.
+  //ADDING CODE TEST
