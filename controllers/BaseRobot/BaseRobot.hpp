@@ -54,4 +54,5 @@ private:
 	
 	// add additional members as needed
 	// test to make sure github is working properly
+	// a second test to make sure all is working smoothly
 };
