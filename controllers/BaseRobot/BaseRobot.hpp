@@ -17,6 +17,7 @@
 #include <webots/Receiver.hpp>
 #include <webots/Emitter.hpp>
 #include <webots/Robot.hpp>
+#include <webots/Keyboard.hpp>
 
 
 constexpr int TIME_STEP{ 64 };

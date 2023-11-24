@@ -14,6 +14,22 @@ BaseRobot::BaseRobot()
     receiver->enable(TIME_STEP);
 }
 
+
+void keyboardControl() {
+    int input {getKey()};
+}
+
+void updateCurrentPosition() {
+    currentPositionX = 
+    currentPositionY =
+}
+
+void setTargetPosition(double x, double y) {
+    targetPositionX = x;
+    targetPositionY = y;
+}
+
+
 void BaseRobot::sendMessage(const std::string& ID, const std::string& data0, const std::string& data1) {
     std::cout << "Sending message to " << ID << std::endl;
     std::string message{};
