@@ -13,11 +13,14 @@
 #include <sstream>
 #include <cstring> 
 #include <string>
+#include <cmath>
 
 #include <webots/Receiver.hpp>
 #include <webots/Emitter.hpp>
 #include <webots/Robot.hpp>
 #include <webots/Keyboard.hpp>
+#include <webots/GPS.hpp>
+#include <webots/Motor.hpp>
 
 
 constexpr int TIME_STEP{ 64 };
@@ -35,6 +38,7 @@ public:
 	void updateCurrentPosition();
 	void setTargetPosition(double x, double y);
 	bool moveToTarget(double stopDistance);
+	std::string getName();
 	   
 	void sendMessage(const std::string& ID, const std::string& data0, const std::string& data1);
 	std::pair<std::string, std::string> receiveMessage();
@@ -52,6 +56,10 @@ protected:
 private:
 	std::unique_ptr<webots::Receiver> receiver{};
 	std::unique_ptr<webots::Emitter> emitter{};
+	
+	std::unique_ptr<webots::GPS> gps{};
+
+
 	
 	// add additional members as needed
 	// test to make sure github is working properly

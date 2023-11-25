@@ -16,7 +16,17 @@ BaseRobot::BaseRobot()
 
 
 void keyboardControl() {
-    int input {getKey()};
+    std::ifstream input("KeyboardConfig.txt");
+    std::string line {};
+    if (std::getline(input, line) == "keyboardControl=true") {
+        keyboardControl();
+    }
+    else if (std::getline(input, line) == "keyboardControl=false") {
+        run();
+    }
+    else {
+        std::cout << "wrong text in KeyboardConfig.txt\n";
+    }
 }
 
 void updateCurrentPosition() {
@@ -28,7 +38,6 @@ void setTargetPosition(double x, double y) {
     targetPositionX = x;
     targetPositionY = y;
 }
-
 
 void BaseRobot::sendMessage(const std::string& ID, const std::string& data0, const std::string& data1) {
     std::cout << "Sending message to " << ID << std::endl;

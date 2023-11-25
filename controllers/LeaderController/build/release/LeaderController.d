@@ -1,4 +1,5 @@
-build/release/BaseRobot.o: BaseRobot.cpp BaseRobot.hpp \
+build/release/LeaderController.o: LeaderController.cpp LeaderRobot.hpp \
+ ../BaseRobot/BaseRobot.hpp \
  C:\Program\ Files\Webots/include/controller/cpp/webots/Receiver.hpp \
  C:\Program\ Files\Webots/include/controller/cpp/webots/Device.hpp \
  C:/Program\ Files/Webots/include/controller/c/webots/types.h \
