@@ -1,1 +1,1 @@
-keyboardControl=true
+keyboardControl=false

@@ -10,31 +10,23 @@
 BaseRobot::BaseRobot()
     : ID{ getName() }
     , receiver{ getReceiver("receiver") }
-    , emitter{ getEmitter("emitter") } {
-    receiver->enable(TIME_STEP);
+    , emitter{ getEmitter("emitter") }
+    , gps{getGPS("gps")} {
+    receiver->enable(TIME_STEP), gps->enable(TIME_STEP);
 }
 
+BaseRobot::~BaseRobot(){};
 
-void keyboardControl() {
-    std::ifstream input("KeyboardConfig.txt");
-    std::string line {};
-    if (std::getline(input, line) == "keyboardControl=true") {
-        keyboardControl();
-    }
-    else if (std::getline(input, line) == "keyboardControl=false") {
-        run();
-    }
-    else {
-        std::cout << "wrong text in KeyboardConfig.txt\n";
-    }
+void keyboardControl();
+
+
+
+void BaseRobot::updateCurrentPosition() {
+    currentPositionX = gps->getValues()[0];
+    currentPositionY = gps->getValues()[1];
 }
 
-void updateCurrentPosition() {
-    currentPositionX = 
-    currentPositionY =
-}
-
-void setTargetPosition(double x, double y) {
+void BaseRobot::setTargetPosition(double x, double y){
     targetPositionX = x;
     targetPositionY = y;
 }

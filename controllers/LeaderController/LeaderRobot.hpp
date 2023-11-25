@@ -4,9 +4,10 @@
 class LeaderRobot : public BaseRobot {
 public:
     LeaderRobot();
-    ~LeaderRobot();
+    virtual ~LeaderRobot();
 
-    void keyboardControl();
+    bool keyboardCheck();
+    void keyboard();
     virtual void run() override;
     virtual void move(double speed) override;
     virtual void rotate(double speed) override;
@@ -15,7 +16,7 @@ public:
     void fileOutput(const std::string& output);
 
 protected:
-
+    bool keyActive;
 
 	// add additional members as needed
   

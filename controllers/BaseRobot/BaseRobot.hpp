@@ -14,6 +14,7 @@
 #include <cstring> 
 #include <string>
 #include <cmath>
+#include <fstream>
 
 #include <webots/Receiver.hpp>
 #include <webots/Emitter.hpp>
@@ -28,7 +29,7 @@ constexpr int TIME_STEP{ 64 };
 class BaseRobot : public webots::Robot {
 public:
 	BaseRobot();
-	virtual ~BaseRobot();
+	~BaseRobot();
   
 	virtual void run() = 0;
 	virtual void move(double speed) = 0;
@@ -38,7 +39,7 @@ public:
 	void updateCurrentPosition();
 	void setTargetPosition(double x, double y);
 	bool moveToTarget(double stopDistance);
-	std::string getName();
+	
 	   
 	void sendMessage(const std::string& ID, const std::string& data0, const std::string& data1);
 	std::pair<std::string, std::string> receiveMessage();
@@ -58,6 +59,7 @@ private:
 	std::unique_ptr<webots::Emitter> emitter{};
 	
 	std::unique_ptr<webots::GPS> gps{};
+	std::unique_ptr<webots::Compass> compass{};
 
 
 	

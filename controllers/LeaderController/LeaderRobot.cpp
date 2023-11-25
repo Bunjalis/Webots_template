@@ -17,21 +17,81 @@ using namespace webots;
 
 
 LeaderRobot::LeaderRobot() 
-  : BaseRobot(), 
+  : BaseRobot(), keyActive {keyboardCheck()}, 
      frontLeftMotor{getMotor("front left wheel motor")},
 	   frontRightMotor{getMotor("front right wheel motor")},
 	   rearLeftMotor{getMotor("rear left wheel motor")},
 	   rearRightMotor{getMotor("rear right wheel motor")}{
+      rearLeftMotor->setPosition(INFINITY);
+      rearRightMotor->setPosition(INFINITY);
+      frontLeftMotor->setPosition(INFINITY);
+      frontRightMotor->setPosition(INFINITY);
       
      }
 
-    
+
+
+  bool LeaderRobot::keyboardCheck() {
+    std::ifstream inputFile("KeyboardConfig.txt");
+    std::string line;
+    std::string strTrue {"keyboardControl=true"};
+    std::string strFalse {"keyboardControl=false"};
+    std::getline(inputFile, line);
+
+    if ( line == strTrue) {
+        return true;
+    }
+    else if (line == strFalse) {
+        return false;
+    }
+    else {
+        std::cout << "wrong text in KeyboardConfig.txt\n";
+        return false;
+    }
+  }
+     
 
 LeaderRobot::~LeaderRobot(){};
 
-void keyboardControl();
+void LeaderRobot::keyboard() {
+  webots::Keyboard kb;
+	kb.enable(TIME_STEP);
+	while (step(TIME_STEP) != -1) {
+  
+		int key = kb.getKey();
 
-void run();
+		if (key == 87){
+			move(3);
+		}
+		else if (key == 83){
+			move(-3);
+		}
+		else if (key == 68) {
+			rotate(-3);
+		}
+		else if (key == 65){
+			rotate(3);
+		}
+		else {
+			move(0);
+		}
+  	};
+}
+
+void LeaderRobot::run() {
+  if (keyActive == true) {
+    keyboard();
+    return;
+  }
+  while (step(TIME_STEP) != -1) {
+  rearLeftMotor->setVelocity(-3);
+  rearRightMotor->setVelocity(3);
+  frontLeftMotor->setVelocity(-3);
+  frontRightMotor->setVelocity(3);
+		
+		
+  	};
+};
 
 void LeaderRobot::move(double speed) {
   rearLeftMotor->setVelocity(speed);
