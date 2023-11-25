@@ -11,8 +11,9 @@ BaseRobot::BaseRobot()
     : ID{ getName() }
     , receiver{ getReceiver("receiver") }
     , emitter{ getEmitter("emitter") }
-    , gps{getGPS("gps")} {
-    receiver->enable(TIME_STEP), gps->enable(TIME_STEP);
+    , gps{getGPS("gps")}
+    , compass{getCompass("compass")} {
+    receiver->enable(TIME_STEP), gps->enable(TIME_STEP), compass->enable(TIME_STEP);
 }
 
 BaseRobot::~BaseRobot(){};
@@ -22,9 +23,12 @@ void keyboardControl();
 
 
 void BaseRobot::updateCurrentPosition() {
-    currentPositionX = gps->getValues()[0];
-    currentPositionY = gps->getValues()[1];
+    currentPositionX = gps->getValues()[1];
+    currentPositionY = -1 * gps->getValues()[0];
+    currentYaw = bearing();
 }
+
+
 
 void BaseRobot::setTargetPosition(double x, double y){
     targetPositionX = x;
@@ -64,4 +68,14 @@ std::pair<std::string, std::string> BaseRobot::receiveMessage() {
     }
     // If the ID doesn't match or the format is incorrect, return an empty pair
     return std::make_pair("", "");
+}
+
+double BaseRobot::bearing() {
+  const double *north = compass->getValues();
+  double rad = atan2(north[1], north[0]);
+  double bearing = (rad - 1.5708) / PI * 180.0;
+  if (bearing < 0.0) {
+    bearing = bearing + 360.0;
+  }
+  return bearing;
 }

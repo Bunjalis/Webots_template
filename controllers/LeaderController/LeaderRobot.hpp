@@ -1,5 +1,9 @@
 
 #include "../BaseRobot/BaseRobot.hpp"
+#include <webots/lidar.hpp>
+#include <vector>
+#include <utility>
+
 
 class LeaderRobot : public BaseRobot {
 public:
@@ -17,6 +21,7 @@ public:
 
 protected:
     bool keyActive;
+    std::vector<std::pair<double, double>> ooi;
 
 	// add additional members as needed
   
@@ -27,7 +32,7 @@ private:
     std::unique_ptr<webots::Motor> rearLeftMotor{};
     std::unique_ptr<webots::Motor> rearRightMotor{};
 
-   
+    std::unique_ptr<webots::Lidar> lidar{};
 
 	// add additional members as needed
 	// test to make sure github is working properly

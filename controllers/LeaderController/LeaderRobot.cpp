@@ -9,6 +9,7 @@
 // and/or to add some other includes
 #include <webots/Robot.hpp>
 #include "LeaderRobot.hpp"
+#include <iostream>
 
 
 
@@ -21,11 +22,13 @@ LeaderRobot::LeaderRobot()
      frontLeftMotor{getMotor("front left wheel motor")},
 	   frontRightMotor{getMotor("front right wheel motor")},
 	   rearLeftMotor{getMotor("rear left wheel motor")},
-	   rearRightMotor{getMotor("rear right wheel motor")}{
+	   rearRightMotor{getMotor("rear right wheel motor")},
+     lidar{getLidar("lidar")}{
       rearLeftMotor->setPosition(INFINITY);
       rearRightMotor->setPosition(INFINITY);
       frontLeftMotor->setPosition(INFINITY);
       frontRightMotor->setPosition(INFINITY);
+      lidar->enable(TIME_STEP);
       
      }
 
@@ -83,14 +86,12 @@ void LeaderRobot::run() {
     keyboard();
     return;
   }
+  move(0);
+  rotate(0);
+  scanLidarData();
   while (step(TIME_STEP) != -1) {
-  rearLeftMotor->setVelocity(-3);
-  rearRightMotor->setVelocity(3);
-  frontLeftMotor->setVelocity(-3);
-  frontRightMotor->setVelocity(3);
-		
-		
-  	};
+    rotate(0);
+  }
 };
 
 void LeaderRobot::move(double speed) {
@@ -107,7 +108,53 @@ void LeaderRobot::rotate(double speed) {
   frontRightMotor->setVelocity(speed);
 }
 
-void scanLidarData();
+void LeaderRobot::scanLidarData() {
+  rotate(1);
+  int steps {310};
+  bool oi = true;
+  for (int i {0}; i < steps && step(TIME_STEP) != -1; i++) {
+    auto out {lidar->getRangeImage()};
+    
+    if (*out != INFINITY && oi == true) {
+      updateCurrentPosition();
+      std::pair<double, double> newOoi;
+      if (currentYaw >= 0 && currentYaw < 90) {
+        newOoi.first = *out * sin(currentYaw * PI/180) + currentPositionX;
+        newOoi.second = *out * cos(currentYaw * PI/180) + currentPositionY;
+      }
+      else if (currentYaw >= 90 && currentYaw < 180) {
+        newOoi.first = *out * cos((currentYaw - 90) * PI/180) + currentPositionX;
+        newOoi.second = *out * sin((currentYaw - 90) * PI/180) * -1 + currentPositionY;
+      }
+      else if (currentYaw >= 180 && currentYaw < 270) {
+        newOoi.first = *out * sin((currentYaw - 180) * PI/180) * -1 + currentPositionX;
+        newOoi.second = *out * cos((currentYaw - 180) * PI/180) * -1 + currentPositionY;
+      }
+      else if (currentYaw >= 270 && currentYaw <= 360) {
+        newOoi.first = *out * sin((360 - currentYaw ) * PI/180) * -1 + currentPositionX;
+        newOoi.second = *out * cos((360 - currentYaw) * PI/180) + currentPositionY;
+      }
+    
+      ooi.push_back(newOoi);
+      std::ofstream outputFile("output.txt", std::ios::app);
+      outputFile << "OOI discovered at x:<" << newOoi.first << "> y:<" << newOoi.second << ">\n";
+      std::cout << "OOI discovered at x:<" << newOoi.first << "> y:<" << newOoi.second << ">\n";
+      oi = false;
+      //std::cout << "Lidar distance: " << *out << "\n";
+      //std::cout << "position (" << currentPositionX << ", " << currentPositionY << ")\n";
+      //std::cout << "Heading: " << currentYaw << "\n";
+    }
+    else if (*out == INFINITY){
+      oi = true;
+    }
+    //updateCurrentPosition();
+     //std::cout << "Lidar distance: " << *out << "\n";
+      //std::cout << "position (" << currentPositionX << ", " << currentPositionY << ")\n";
+      //std::cout << "Heading: " << currentYaw << "\n";
+  }
+  rotate(0);
+  
+}
 void fileOutput(const std::string& output);
 // This is the main program of your controller.
 // It creates an instance of your Robot instance, launches its

@@ -16,12 +16,15 @@
 #include <cmath>
 #include <fstream>
 
+#define PI 3.1415926535897932384626434
+
 #include <webots/Receiver.hpp>
 #include <webots/Emitter.hpp>
 #include <webots/Robot.hpp>
 #include <webots/Keyboard.hpp>
 #include <webots/GPS.hpp>
 #include <webots/Motor.hpp>
+#include <webots/Compass.hpp>
 
 
 constexpr int TIME_STEP{ 64 };
@@ -43,6 +46,8 @@ public:
 	   
 	void sendMessage(const std::string& ID, const std::string& data0, const std::string& data1);
 	std::pair<std::string, std::string> receiveMessage();
+
+	double bearing();
 
 protected:
 	std::string ID{};

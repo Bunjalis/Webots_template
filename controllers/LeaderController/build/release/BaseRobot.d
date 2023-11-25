@@ -7,4 +7,5 @@ build/release/BaseRobot.o: ../BaseRobot/BaseRobot.cpp \
  C:\Program\ Files\Webots/include/controller/cpp/webots/Robot.hpp \
  C:\Program\ Files\Webots/include/controller/cpp/webots/Keyboard.hpp \
  C:\Program\ Files\Webots/include/controller/cpp/webots/GPS.hpp \
- C:\Program\ Files\Webots/include/controller/cpp/webots/Motor.hpp
+ C:\Program\ Files\Webots/include/controller/cpp/webots/Motor.hpp \
+ C:\Program\ Files\Webots/include/controller/cpp/webots/Compass.hpp
