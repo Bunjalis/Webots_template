@@ -35,6 +35,43 @@ void BaseRobot::setTargetPosition(double x, double y){
     targetPositionY = y;
 }
 
+bool BaseRobot::moveToTarget(double stopDistance) {
+    updateCurrentPosition();
+    double targetYaw {0};
+    if (targetPositionX >= currentPositionX && targetPositionY >= currentPositionY) {
+        targetYaw = 180/PI * atan((targetPositionX - currentPositionX) / (targetPositionY - currentPositionY));
+    }
+    else if (targetPositionX < currentPositionX && targetPositionY < currentPositionY) {
+        targetYaw = 180 - 180/PI * atan((currentPositionX - targetPositionX) / (currentPositionY - targetPositionY));
+    }
+    else if (targetPositionX >= currentPositionX && targetPositionY < currentPositionY) {
+        targetYaw = 90 + 180/PI * atan((currentPositionY - targetPositionY) / (targetPositionX - currentPositionX));
+    }
+    else if (targetPositionX < currentPositionX && targetPositionY >= currentPositionY) {
+        targetYaw = 360 - 180/PI * atan((currentPositionX - targetPositionX) / (targetPositionY - currentPositionY));
+    }
+
+    std::cout << "target yaw is: " << targetYaw << "\n";
+    std::cout << "current yaw is: " << currentYaw << "\n";
+
+    
+    while (step(TIME_STEP) != -1 && currentYaw - targetYaw >= 1 ) {
+        updateCurrentPosition();
+        rotate(abs(currentYaw-targetYaw)/30);
+    }
+    while (step(TIME_STEP) != -1 && distance() >= stopDistance) {
+        updateCurrentPosition();
+        std::cout << "distance: " << distance() << "\n";
+        move(-6);
+    }
+    if (distance() < stopDistance) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
 void BaseRobot::sendMessage(const std::string& ID, const std::string& data0, const std::string& data1) {
     std::cout << "Sending message to " << ID << std::endl;
     std::string message{};
@@ -78,4 +115,10 @@ double BaseRobot::bearing() {
     bearing = bearing + 360.0;
   }
   return bearing;
+}
+
+double BaseRobot::distance() {
+    double determinant {pow(currentPositionX - targetPositionX, 2) + pow(currentPositionY - targetPositionY, 2)};
+    double res {sqrt(determinant)};
+    return res;
 }

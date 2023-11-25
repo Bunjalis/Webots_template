@@ -89,8 +89,11 @@ void LeaderRobot::run() {
   move(0);
   rotate(0);
   scanLidarData();
+  rotate(0);
+  moveToTarget(1);
+  move(0);
   while (step(TIME_STEP) != -1) {
-    rotate(0);
+    move(0);
   }
 };
 
@@ -139,6 +142,8 @@ void LeaderRobot::scanLidarData() {
       std::ofstream outputFile("output.txt", std::ios::app);
       outputFile << "OOI discovered at x:<" << newOoi.first << "> y:<" << newOoi.second << ">\n";
       std::cout << "OOI discovered at x:<" << newOoi.first << "> y:<" << newOoi.second << ">\n";
+      targetPositionX = newOoi.first;
+      targetPositionY = newOoi.second;
       oi = false;
       //std::cout << "Lidar distance: " << *out << "\n";
       //std::cout << "position (" << currentPositionX << ", " << currentPositionY << ")\n";

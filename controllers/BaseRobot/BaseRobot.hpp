@@ -48,6 +48,7 @@ public:
 	std::pair<std::string, std::string> receiveMessage();
 
 	double bearing();
+	double distance();
 
 protected:
 	std::string ID{};
