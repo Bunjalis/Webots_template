@@ -10,6 +10,7 @@
 #include <webots/Robot.hpp>
 #include "LeaderRobot.hpp"
 #include <iostream>
+#include <string>
 
 
 
@@ -86,12 +87,36 @@ void LeaderRobot::run() {
     keyboard();
     return;
   }
+  bool stop  {false};
   move(0);
   rotate(0);
   scanLidarData();
   rotate(0);
-  moveToTarget(1);
+  int rob {0};
+  while (ooi.size() != 0) {
+    sendMessage(std::to_string(3 - (rob % 3) ), std::to_string(ooi[ooi.size() - 1].first), std::to_string(ooi[ooi.size() - 1].second));
+    std::ofstream outputFile("output.txt", std::ios::app);
+    outputFile << "Target pose x:<" << std::to_string(ooi[ooi.size() - 1].first) << "> y:<" << std::to_string(ooi[ooi.size() - 1].second) << "> sent to robot <" << std::to_string(3 - (rob % 3) ) << ">\n";
+    std::cout << "Target pose x:<" << std::to_string(ooi[ooi.size() - 1].first) << "> y:<" << std::to_string(ooi[ooi.size() - 1].second) << "> sent to robot <" << std::to_string(3 - (rob % 3) ) << ">\n";
+    ooi.pop_back();
+    rob++;
+  }
   move(0);
+  while (step(TIME_STEP) != -1 && stop == false) {
+    std::pair<std::string, std::string> inbox {receiveMessage()};
+    if (inbox.first != "") {
+
+        //std::cout << "HERE\n";
+        //std::cout << "new coords for robot: " << ID  << ": " << inbox.first << ", " << inbox.second << "\n";
+        
+        targetPositionX = std::stod(inbox.first);
+        targetPositionY = std::stod(inbox.second);
+       // std::cout << "new coords for robot: " << ID  << ": " << targetPositionX << ", " << targetPositionY << "\n";
+        stop = true;
+    }
+    move(0);
+  }
+  moveToTarget(1);
   while (step(TIME_STEP) != -1) {
     move(0);
   }

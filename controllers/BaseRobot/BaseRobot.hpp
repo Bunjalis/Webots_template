@@ -55,6 +55,7 @@ protected:
 	double currentPositionX{};
 	double currentPositionY{};
 	double currentYaw{};
+	double targetYaw{};
 	double targetPositionX{};
 	double targetPositionY{};
 

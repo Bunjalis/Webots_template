@@ -39,7 +39,7 @@
 ###
 ### ---- C++ Sources ----
 ### if your program uses several C++ source files:
- CXX_SOURCES = LeaderRobot.cpp LeaderController.cpp ../BaseRobot/BaseRobot.cpp
+CXX_SOURCES = LeaderRobot.cpp LeaderController.cpp ../BaseRobot/BaseRobot.cpp 
 ###
 ### ---- Compilation options ----
 ### if special compilation flags are necessary:

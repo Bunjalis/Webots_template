@@ -37,12 +37,11 @@ void BaseRobot::setTargetPosition(double x, double y){
 
 bool BaseRobot::moveToTarget(double stopDistance) {
     updateCurrentPosition();
-    double targetYaw {0};
     if (targetPositionX >= currentPositionX && targetPositionY >= currentPositionY) {
         targetYaw = 180/PI * atan((targetPositionX - currentPositionX) / (targetPositionY - currentPositionY));
     }
     else if (targetPositionX < currentPositionX && targetPositionY < currentPositionY) {
-        targetYaw = 180 - 180/PI * atan((currentPositionX - targetPositionX) / (currentPositionY - targetPositionY));
+        targetYaw = 180 + 180/PI * atan((currentPositionX - targetPositionX) / (currentPositionY - targetPositionY));
     }
     else if (targetPositionX >= currentPositionX && targetPositionY < currentPositionY) {
         targetYaw = 90 + 180/PI * atan((currentPositionY - targetPositionY) / (targetPositionX - currentPositionX));
@@ -50,19 +49,25 @@ bool BaseRobot::moveToTarget(double stopDistance) {
     else if (targetPositionX < currentPositionX && targetPositionY >= currentPositionY) {
         targetYaw = 360 - 180/PI * atan((currentPositionX - targetPositionX) / (targetPositionY - currentPositionY));
     }
+    targetYaw = (targetYaw + 180);
+    if (targetYaw >= 360) {
+        targetYaw -= 360.0;
+    }
+    // std::cout << "robot: " << ID << "has a targe"<<"\n";
+    // std::cout << "current yaw is: " << currentYaw << "\n";
+    //std::cout << "robot: " << ID << " target yaw is: " << targetYaw << "\n";
+    //std::cout <<"robot: " << ID << " current yaw is: " << currentYaw << "\n";
 
-    std::cout << "target yaw is: " << targetYaw << "\n";
-    std::cout << "current yaw is: " << currentYaw << "\n";
-
-    
-    while (step(TIME_STEP) != -1 && currentYaw - targetYaw >= 1 ) {
+        
+    while (step(TIME_STEP) != -1 && abs(currentYaw - targetYaw) >= 1 ) {
         updateCurrentPosition();
-        rotate(abs(currentYaw-targetYaw)/30);
+        rotate(0.5);
     }
     while (step(TIME_STEP) != -1 && distance() >= stopDistance) {
         updateCurrentPosition();
-        std::cout << "distance: " << distance() << "\n";
-        move(-6);
+        
+        //std::cout << "distance: " << distance() << "\n";
+        move(6);
     }
     if (distance() < stopDistance) {
         return true;
