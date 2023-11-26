@@ -15,6 +15,8 @@
 #include <string>
 #include <cmath>
 #include <fstream>
+#include <vector>
+#include <utility>
 
 #define PI 3.1415926535897932384626434
 
@@ -50,7 +52,7 @@ public:
 
 	double bearing();
 	double distance();
-	double getHeading();
+	void getHeading();
 
 protected:
 	std::string ID{};
@@ -60,6 +62,8 @@ protected:
 	double targetYaw{};
 	double targetPositionX{};
 	double targetPositionY{};
+
+	std::vector<std::pair<double, double>> ooi;
 
 	// add additional members as needed
   

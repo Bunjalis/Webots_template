@@ -136,7 +136,8 @@ void LeaderRobot::rotate(double speed) {
   frontRightMotor->setVelocity(speed);
 }
 
-void LeaderRobot::moveTarget(stopDistance) {
+void LeaderRobot::moveTarget(double stopDistance) {
+    
     while (step(TIME_STEP) != -1 && abs(currentYaw - targetYaw) >= 1 ) {
         updateCurrentPosition();
         rotate(0.5);

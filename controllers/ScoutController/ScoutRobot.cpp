@@ -34,28 +34,41 @@ ScoutRobot::ScoutRobot()
 ScoutRobot::~ScoutRobot(){};
 
 void ScoutRobot::run() {
+    
 
   move(0);
   rotate(0);
-  bool stop {false};
-  while (step(TIME_STEP) != -1 && stop == false) {
+  int count {0};
+  while (step(TIME_STEP) != -1 && count <= 10) {
     std::pair<std::string, std::string> inbox {receiveMessage()};
     if (inbox.first != "") {
-
+        std::pair<double, double> newOoi;
+        newOoi.first = std::stod(inbox.first);
+        newOoi.second = std::stod(inbox.second);
         //std::cout << "HERE\n";
         //std::cout << "new coords for robot: " << ID  << ": " << inbox.first << ", " << inbox.second << "\n";
-        targetPositionX = std::stod(inbox.first);
-        targetPositionY = std::stod(inbox.second);
+        ooi.push_back(newOoi);
+        //targetPositionX = std::stod(inbox.first);
+        //targetPositionY = std::stod(inbox.second);
         //std::cout << "new coords for robot: " << ID  << ": " << targetPositionX << ", " << targetPositionY << "\n";
-        stop = true;
+        count++;
+
+    }  
+    else if (count != 0) {
+        count++;
     }
-    
   }
-  moveToTarget(0.5);
-  move(0);
-  bool green {readColour()};
-  if(green == true) {
-    sendMessage("0", std::to_string(targetPositionX), std::to_string(targetPositionY));
+  while (ooi.size() != 0) {
+    targetPositionX = ooi[ooi.size()-1].first;
+    targetPositionY = ooi[ooi.size()-1].second;
+    ooi.pop_back();
+    moveToTarget(0.5);
+    move(0);
+    bool green {readColour()};
+    if(green == true) {
+        sendMessage("0", std::to_string(targetPositionX), std::to_string(targetPositionY));
+    }
+    move(0);
   }
   while (step(TIME_STEP) != -1) {
     move(0);
@@ -73,25 +86,31 @@ void ScoutRobot::rotate(double speed) {
   rightMotor->setVelocity(speed);
 }
 
-void ScoutRobot::moveTarget(stopDistance) {
+void ScoutRobot::moveTarget(double stopDistance) {
+
     while (step(TIME_STEP) != -1 && abs(currentYaw - targetYaw) >= 1 ) {
         updateCurrentPosition();
         rotate(0.5);
     }
+   
     while (step(TIME_STEP) != -1 && distance() >= stopDistance) {
+   
         updateCurrentPosition();
         //std::cout << "distance: " << distance() << "\n";
         move(6);
-        if (distanceSensor->getMinValue <= 0.3) {
+        if (distanceSensor->getValue() <= 700) {
+            move(0);
+        
           int steps {90};
-          for (int i {0}; i < steps && step(TIME_STEP) != -1 && i <; i++) {
+          for (int i {0}; i < steps && step(TIME_STEP) != -1; i++) {
             rotate(1);
           }
           steps = 90;
-          for (int i {0}; i < steps && step(TIME_STEP) != -1 && i <; i++) {
+          for (int i {0}; i < steps && step(TIME_STEP) != -1; i++) {
             rotate(0);
             move(3);
           }
+          move(0);
           moveToTarget(0.5);
         }
     }
