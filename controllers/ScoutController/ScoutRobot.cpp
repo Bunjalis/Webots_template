@@ -122,10 +122,12 @@ bool ScoutRobot::readColour () {
     camera->recognitionEnable(TIME_STEP);
     if (camera->getRecognitionNumberOfObjects() != 0) {
         //std::cout << "COLOUR = GREEN\n";
+        sendMessage("0", ID, "green");
         return 1;
     }
     else {
         //std::cout << "COLOUR = RED\n";
+        sendMessage("0", ID, "red");
         return 0;
     }
 }

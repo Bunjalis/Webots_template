@@ -95,28 +95,47 @@ void LeaderRobot::run() {
   int rob {0};
   while (ooi.size() != 0) {
     sendMessage(std::to_string(3 - (rob % 3) ), std::to_string(ooi[ooi.size() - 1].first), std::to_string(ooi[ooi.size() - 1].second));
-    std::ofstream outputFile("output.txt", std::ios::app);
-    outputFile << "Target pose x:<" << std::to_string(ooi[ooi.size() - 1].first) << "> y:<" << std::to_string(ooi[ooi.size() - 1].second) << "> sent to robot <" << std::to_string(3 - (rob % 3) ) << ">\n";
-    std::cout << "Target pose x:<" << std::to_string(ooi[ooi.size() - 1].first) << "> y:<" << std::to_string(ooi[ooi.size() - 1].second) << "> sent to robot <" << std::to_string(3 - (rob % 3) ) << ">\n";
+    std::string outString {""};
+    outString += "Target pose x:<" + std::to_string(ooi[ooi.size() - 1].first);
+    outString += "> y:<" + std::to_string(ooi[ooi.size() - 1].second) + "> sent to robot <"; 
+    outString += std::to_string(3 - (rob % 3) ) + ">\n";
+    fileOutput(outString);
+
+    std::cout << "Target pose x:<" << std::to_string(ooi[ooi.size() - 1].first);
+    std::cout << "> y:<" << std::to_string(ooi[ooi.size() - 1].second) ;
+    std::cout << "> sent to robot <" << std::to_string(3 - (rob % 3) ) << ">\n";
     ooi.pop_back();
     rob++;
   }
   move(0);
   while (step(TIME_STEP) != -1 && stop == false) {
     std::pair<std::string, std::string> inbox {receiveMessage()};
-    if (inbox.first != "") {
 
-        //std::cout << "HERE\n";
-        //std::cout << "new coords for robot: " << ID  << ": " << inbox.first << ", " << inbox.second << "\n";
-        
-        targetPositionX = std::stod(inbox.first);
-        targetPositionY = std::stod(inbox.second);
-       // std::cout << "new coords for robot: " << ID  << ": " << targetPositionX << ", " << targetPositionY << "\n";
-        stop = true;
+    if (inbox.first.size() > 2) {
+      
+       
+      targetPositionX = std::stod(inbox.first);
+      targetPositionY = std::stod(inbox.second);
+      std::string outString4 {""};
+      outString4 += "Green OOI has been found, moving to x: " + inbox.first + " y: " + inbox.second + "\n";
+      fileOutput(outString4);
+      std::cout << outString4;
+      
+      stop = true;
+    }
+    else if (inbox.first.size() >= 1 && inbox.first.size() < 2) {
+      std::string outString3 {""};
+      outString3 += "Robot " + inbox.first + " has identified a " + inbox.second + " OOI\n";
+      fileOutput(outString3);
+      std::cout << outString3;
     }
     move(0);
   }
   moveToTarget(1);
+  std::string outString5 {""};
+  outString5 += "Successfully arrived at the green OOI\n";
+  fileOutput(outString5);
+  std::cout << outString5;
   while (step(TIME_STEP) != -1) {
     move(0);
   }
@@ -177,8 +196,10 @@ void LeaderRobot::scanLidarData() {
       }
     
       ooi.push_back(newOoi);
-      std::ofstream outputFile("output.txt", std::ios::app);
-      outputFile << "OOI discovered at x:<" << newOoi.first << "> y:<" << newOoi.second << ">\n";
+      std::string outString2 {""};
+      outString2 += "OOI discovered at x:<" + std::to_string(newOoi.first);
+      outString2 += "> y:<" + std::to_string(newOoi.second) + ">\n";
+      fileOutput(outString2);
       std::cout << "OOI discovered at x:<" << newOoi.first << "> y:<" << newOoi.second << ">\n";
       targetPositionX = newOoi.first;
       targetPositionY = newOoi.second;
@@ -198,7 +219,10 @@ void LeaderRobot::scanLidarData() {
   rotate(0);
   
 }
-void fileOutput(const std::string& output);
+void LeaderRobot::fileOutput(const std::string& output) {
+  std::ofstream outputFile("output.txt", std::ios::app);
+  outputFile << output;
+}
 // This is the main program of your controller.
 // It creates an instance of your Robot instance, launches its
 // function(s) and destroys it at the end of the execution.

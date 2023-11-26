@@ -6,7 +6,7 @@ minimizedPerspectives: 000000ff00000000fd0000000200000001000002170000027bfc02000
 maximizedDockId: -1
 centralWidgetVisible: 1
 orthographicViewHeight: 1
-textFiles: 1 "controllers/BaseRobot/BaseRobot.hpp" "controllers/ScoutController/ScoutController.cpp" "controllers/LeaderController/LeaderController.cpp" "controllers/LeaderController/LeaderRobot.cpp" "controllers/LeaderController/LeaderRobot.hpp" "BaseRobot.cpp" "controllers/LeaderController/KeyboardConfig.txt" "controllers/LeaderController/output.txt" "controllers/LeaderController/Makefile"
+textFiles: 7 "controllers/BaseRobot/BaseRobot.hpp" "controllers/ScoutController/ScoutController.cpp" "controllers/LeaderController/LeaderController.cpp" "controllers/LeaderController/LeaderRobot.cpp" "controllers/LeaderController/LeaderRobot.hpp" "BaseRobot.cpp" "controllers/LeaderController/KeyboardConfig.txt" "controllers/LeaderController/output.txt" "controllers/LeaderController/Makefile"
 globalOptionalRendering: LidarRaysPaths::LidarPointClouds
 consoles: Console:All:All
 renderingDevicePerspectives: 0:camera depth;0;0.895833;0;0

@@ -9,7 +9,7 @@ WorldInfo {
 }
 Viewpoint {
   orientation -0.2917196536976716 0.0015581122676255597 0.9565025958839172 3.1313848282010044
-  position 1.7769988624408692 -0.30003092479992755 0.9359154437805116
+  position 16.000683204763135 -0.4518173819552486 10.502279360726172
 }
 TexturedBackground {
 }
@@ -24,8 +24,8 @@ RectangleArena {
   }
 }
 Robot {
-  translation -0.0002886426913629569 0.00045931319965341276 -0.0005200934608119989
-  rotation -0.003538446518379488 0.03256759515792698 -0.9994632715322088 -0.01759594106059481
+  translation -4.347192212417738 -4.558073961262009 -0.0005217393182180008
+  rotation -0.0001479457317087823 9.461191724651818e-05 -0.9999999845803226 -2.003703893514567
   children [
     Emitter {
     }
@@ -715,7 +715,7 @@ Robot {
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position -135.73201511406504
+        position -161.7466251682231
         axis 0 1 0
         anchor 0.05 0.11 0.043
         dampingConstant 5
@@ -733,7 +733,7 @@ Robot {
       ]
       endPoint Solid {
         translation 0.05 0.11 0.043
-        rotation 0 1 0 2.498061643885867
+        rotation 0 0.9999999999999999 0 1.616192818446158
         children [
           Transform {
             children [
@@ -813,11 +813,13 @@ Robot {
           density -1
           mass 0.5
         }
+        linearVelocity -1.3363492423087827e-14 -1.9217689764286317e-15 1.8288196089513518e-16
+        angularVelocity -5.1333667435000526e-15 1.5123579455778315e-15 -3.1808900237349056e-15
       }
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position 135.7320011530568
+        position 161.74660573855869
         axis 0 1 0
         anchor 0.05 -0.11 0.043
         dampingConstant 5
@@ -835,7 +837,7 @@ Robot {
       ]
       endPoint Solid {
         translation 0.05 -0.11 0.043
-        rotation 0 -1 0 2.4980756048940886
+        rotation 0 -1 0 1.6162122481105632
         children [
           Transform {
             rotation 0 0 1 3.141592
@@ -853,11 +855,13 @@ Robot {
           ]
         }
         physics USE WHEEL_PHYSICS
+        linearVelocity -6.012926032023114e-15 -1.1695076512222025e-14 -4.177491542080561e-17
+        angularVelocity -6.847474950901096e-16 -3.0561247228162046e-15 -4.389085909082733e-15
       }
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position -135.73198626987005
+        position -161.74658411977327
         axis 0 1 0
         anchor -0.055 0.11 0.043
         dampingConstant 5
@@ -875,7 +879,7 @@ Robot {
       ]
       endPoint Solid {
         translation -0.055 0.11 0.043
-        rotation 0 1 0 2.4980904880808534
+        rotation 0 1 0 1.616233866895974
         children [
           Transform {
             children [
@@ -886,11 +890,13 @@ Robot {
         name "rear left wheel"
         boundingObject USE LEFT_WHEEL_CYLINDER
         physics USE WHEEL_PHYSICS
+        linearVelocity 6.54730283904571e-15 1.2657888765321023e-14 -1.774742787422924e-16
+        angularVelocity -3.136379273778639e-16 -6.1925462159771375e-15 -4.2302002565995795e-15
       }
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position 135.73199388975664
+        position 161.74659687675054
         axis 0 1 0
         anchor -0.055 -0.11 0.043
         dampingConstant 5
@@ -908,7 +914,7 @@ Robot {
       ]
       endPoint Solid {
         translation -0.055 -0.11 0.043
-        rotation 0 -1 0 2.498082868194265
+        rotation 0 -0.9999999999999999 0 1.6162211099187038
         children [
           Transform {
             rotation 0 0 1 3.141592
@@ -920,6 +926,8 @@ Robot {
         name "rear right wheel"
         boundingObject USE RIGHT_WHEEL_CYLINDER
         physics USE WHEEL_PHYSICS
+        linearVelocity 1.259591992597102e-14 1.2579784337651766e-15 -1.1540123530365612e-16
+        angularVelocity -3.6420671531346455e-15 5.446173016633907e-15 -4.5294662968340256e-15
       }
     }
     Solid {
@@ -1181,10 +1189,12 @@ Robot {
     mass 0.45
   }
   controller "LeaderController"
+  linearVelocity -1.2600388147406742e-14 -6.772253697999549e-15 1.7490282726402466e-16
+  angularVelocity -2.909375713469315e-15 1.348762794947631e-15 -5.813464741804427e-15
 }
 Robot {
-  translation 0.482958 -0.510218 -6.39431e-05
-  rotation -0.000689852608048916 -0.002339006050281858 0.9999970265726174 -0.5736092449840937
+  translation -0.013138714319927948 2.755943911059955 -6.394172237409769e-05
+  rotation -0.0007223424940190216 0.0002834793853494307 0.9999996989303342 2.3936415672860947
   children [
     GPS {
     }
@@ -1196,7 +1206,7 @@ Robot {
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position -186.29168650618902
+        position 277.96433002983645
         axis 0 1 0
         anchor 0 0 0.02
       }
@@ -1212,8 +1222,8 @@ Robot {
         }
       ]
       endPoint DEF EPUCK_LEFT_WHEEL Solid {
-        translation 0 0.026 0.02
-        rotation 0 1 0 2.2038727091985706
+        translation 0 0.025999999999999995 0.02
+        rotation 0 0.9999999999999999 0 1.5041765139346417
         children [
           DEF EPUCK_WHEEL Transform {
             rotation 1 0 0 -1.570796
@@ -1345,11 +1355,13 @@ Robot {
           density -1
           mass 0.005
         }
+        linearVelocity -4.559653678720007e-06 4.230341855647853e-06 2.4310864407477004e-11
+        angularVelocity -0.000211499667662264 -0.00022796390192874683 2.1835468346653635e-10
       }
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position -133.96431347088108
+        position 338.7396699762296
         axis 0 1 0
         anchor 0 0 0.02
       }
@@ -1366,7 +1378,7 @@ Robot {
       ]
       endPoint DEF EPUCK_RIGHT_WHEEL Solid {
         translation 0 -0.025999999999999978 0.02
-        rotation 0 1 0 4.265763287069822
+        rotation 0 -1 0 0.5523366114680633
         children [
           Transform {
             rotation 1 0 0 3.14159
@@ -1378,6 +1390,8 @@ Robot {
         name "right wheel"
         boundingObject USE EPUCK_WHEEL_BOUNDING_OBJECT
         physics USE EPUCK_WHEEL_PHYSICS
+        linearVelocity -4.559653665328233e-06 4.230341847013247e-06 2.437090529670328e-11
+        angularVelocity -0.00021149966753666437 -0.00022796390219750233 -1.9784687692641719e-10
       }
     }
     DEF BATTERY_CONNECTOR Transform {
@@ -2766,10 +2780,12 @@ Robot {
   controller "ScoutController"
   cpuConsumption 1.11
   remoteControl "e-puck_bluetooth"
+  linearVelocity -3.4203205628928853e-06 3.173294784519523e-06 6.926740117646973e-09
+  angularVelocity -0.00021149965305585416 -0.00022796388646486275 1.0254267141216967e-11
 }
 Robot {
-  translation 0.495026 0.00628342 3.73119e-05
-  rotation -0.24116786232449136 0.8423636876250796 0.4819351408151436 0.011127117930227066
+  translation -1.2951139416836284 3.2570939930938816 -6.395279234685386e-05
+  rotation 0.0005073195734287834 -0.00016529152414850997 -0.9999998576527711 -2.5116607847237917
   children [
     GPS {
     }
@@ -2781,7 +2797,7 @@ Robot {
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position -204.67179703355188
+        position 472.4802282820689
         axis 0 1 0
         anchor 0 0 0.02
       }
@@ -2797,8 +2813,8 @@ Robot {
         }
       ]
       endPoint DEF EPUCK_LEFT_WHEEL Solid {
-        translation 0 0.02599999999999997 0.02
-        rotation 0 -1 0 3.6098672038051154
+        translation 0 0.025999999999999968 0.02
+        rotation 0 -1 0 5.0418550635796935
         children [
           DEF EPUCK_WHEEL Transform {
             rotation 1 0 0 -1.570796
@@ -2930,11 +2946,13 @@ Robot {
           density -1
           mass 0.005
         }
+        linearVelocity -0.00014241995209611345 0.00010382564272977532 -4.457234599157872e-12
+        angularVelocity -0.005191274417716649 -0.007120987016279777 2.2850031575137204e-10
       }
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position -204.67180206299219
+        position 497.5041726110558
         axis 0 1 0
         anchor 0 0 0.02
       }
@@ -2950,8 +2968,8 @@ Robot {
         }
       ]
       endPoint DEF EPUCK_RIGHT_WHEEL Solid {
-        translation 0 -0.025999999999999978 0.02
-        rotation 0 -0.9999999999999999 0 3.609872233245418
+        translation 0 -0.025999999999999888 0.02
+        rotation 0 -1 0 5.1506519633110965
         children [
           Transform {
             rotation 1 0 0 3.14159
@@ -2963,6 +2981,8 @@ Robot {
         name "right wheel"
         boundingObject USE EPUCK_WHEEL_BOUNDING_OBJECT
         physics USE EPUCK_WHEEL_PHYSICS
+        linearVelocity -0.00014241995142786902 0.0001038256422444427 -5.370992557396526e-12
+        angularVelocity -0.005191274417555904 -0.007120987016412527 -2.4696552918635994e-10
       }
     }
     DEF BATTERY_CONNECTOR Transform {
@@ -4351,10 +4371,12 @@ Robot {
   controller "ScoutController"
   cpuConsumption 1.11
   remoteControl "e-puck_bluetooth"
+  linearVelocity -0.00010681563008995984 7.786971758469882e-05 3.923798056832222e-08
+  angularVelocity -0.005191274411042183 -0.007120987007660536 -9.232381453817627e-12
 }
 Robot {
-  translation 0.503658 0.504829 -6.39413e-05
-  rotation 0.0007235355597397714 0.00047367528703191295 -0.9999996260639382 1.9822978494066734
+  translation -4.226770667994595 -3.5514322476597293 -6.394158941837313e-05
+  rotation 0.0007257535208321576 0.0003114013193031391 0.999999688155474 -2.3309619908520887
   children [
     GPS {
     }
@@ -4366,7 +4388,7 @@ Robot {
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position -204.28799996370796
+        position 658.5600235835791
         axis 0 1 0
         anchor 0 0 0.02
       }
@@ -4382,8 +4404,8 @@ Robot {
         }
       ]
       endPoint DEF EPUCK_LEFT_WHEEL Solid {
-        translation 0 0.026 0.02
-        rotation 0 -1 0 3.2260701339611932
+        translation 0 0.025999999999999995 0.02
+        rotation 0 1 0 5.1087516369021015
         children [
           DEF EPUCK_WHEEL Transform {
             rotation 1 0 0 -1.570796
@@ -4515,11 +4537,13 @@ Robot {
           density -1
           mass 0.005
         }
+        linearVelocity 2.1092118606464576e-05 2.2184333245378344e-05 2.3820945249879667e-11
+        angularVelocity -0.001109198511426462 0.001054588673069936 -2.2360512247235227e-10
       }
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position -204.288000088252
+        position 675.4559763471281
         axis 0 1 0
         anchor 0 0 0.02
       }
@@ -4535,8 +4559,8 @@ Robot {
         }
       ]
       endPoint DEF EPUCK_RIGHT_WHEEL Solid {
-        translation 0 -0.02599999999999993 0.02
-        rotation 0 -0.9999999999999999 0 3.2260702585052377
+        translation 0 -0.02600000000000002 0.02
+        rotation 0 -1 0 3.128036828267282
         children [
           Transform {
             rotation 1 0 0 3.14159
@@ -4548,6 +4572,8 @@ Robot {
         name "right wheel"
         boundingObject USE EPUCK_WHEEL_BOUNDING_OBJECT
         physics USE EPUCK_WHEEL_PHYSICS
+        linearVelocity 2.1092118590042585e-05 2.218433323617224e-05 2.380282630229034e-11
+        angularVelocity -0.0011091985113412465 0.0010545886731188553 2.204527174619344e-10
       }
     }
     DEF BATTERY_CONNECTOR Transform {
@@ -5936,9 +5962,11 @@ Robot {
   controller "ScoutController"
   cpuConsumption 1.11
   remoteControl "e-puck_bluetooth"
+  linearVelocity 1.5819666437313923e-05 1.663885732567049e-05 1.588551929411042e-08
+  angularVelocity -0.0011091984962640653 0.001054588658739366 -1.5760176598060648e-12
 }
 Solid {
-  translation 2 2 0.25
+  translation -4.79177 -3.67862 0.25
   children [
     Shape {
       appearance Appearance {
@@ -5958,7 +5986,7 @@ Solid {
   ]
 }
 Solid {
-  translation -2 2 0.25
+  translation -1.45258 3.72335 0.25
   children [
     Shape {
       appearance Appearance {
@@ -5975,7 +6003,109 @@ Solid {
   name "dummy"
 }
 Solid {
-  translation 2 -2 0.25
+  translation -0.170227 3.26224 0.25
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.8 0 0
+        }
+      }
+      geometry Cylinder {
+        height 0.5
+        radius 0.1
+      }
+    }
+  ]
+  name "dummy(1)"
+}
+Solid {
+  translation 0.645313 2.34356 0.25
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.8 0 0
+        }
+      }
+      geometry Cylinder {
+        height 0.5
+        radius 0.1
+      }
+    }
+  ]
+  name "dummy(2)"
+}
+Solid {
+  translation 1.74145 1.55233 0.25
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.8 0 0
+        }
+      }
+      geometry Cylinder {
+        height 0.5
+        radius 0.1
+      }
+    }
+  ]
+  name "dummy(3)"
+}
+Solid {
+  translation 2.92078 0.567364 0.25
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.8 0 0
+        }
+      }
+      geometry Cylinder {
+        height 0.5
+        radius 0.1
+      }
+    }
+  ]
+  name "dummy(4)"
+}
+Solid {
+  translation 3.46844 -0.327307 0.25
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.8 0 0
+        }
+      }
+      geometry Cylinder {
+        height 0.5
+        radius 0.1
+      }
+    }
+  ]
+  name "dummy(5)"
+}
+Solid {
+  translation 3.66941 -1.20932 0.25
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.8 0 0
+        }
+      }
+      geometry Cylinder {
+        height 0.5
+        radius 0.1
+      }
+    }
+  ]
+  name "dummy(6)"
+}
+Solid {
+  translation 3.9612 -2.14412 0.25
   children [
     Shape {
       appearance Appearance {
@@ -5990,4 +6120,38 @@ Solid {
     }
   ]
   name "dummy2"
+}
+Solid {
+  translation 3.94468 -3.08752 0.25
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.8 0 0
+        }
+      }
+      geometry Cylinder {
+        height 0.5
+        radius 0.1
+      }
+    }
+  ]
+  name "dummy(7)"
+}
+Solid {
+  translation 3.9227 -4.06991 0.25
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.8 0 0
+        }
+      }
+      geometry Cylinder {
+        height 0.5
+        radius 0.1
+      }
+    }
+  ]
+  name "dummy(8)"
 }
