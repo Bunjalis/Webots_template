@@ -1,5 +1,12 @@
-I have attempted the Advanced Task (yes/no) :
+I have attempted the Advanced Task (yes/no) : yes
 If yes please provide a brief description on your approach:
+
+In the BaseRobot class, their is a vector of pairs, where each pair contains 2 doubles.
+This is where the leader robot stores the position of every OOI it detects. Once the robot has finished
+detecting the OOI's, it loops through the vector, sending the location of an OOI to each robot, starting with
+robot 1, then 2, then 3, then back to 1, repeating this pattern until every OOI is assigned.
+Each scout robot when it recieves the location of the OOI, pushes this value to its own vector of pairs
+(hence why it is in BaseRobot), then loops through that vector, running the moveToTarget function on each OOI.
 
 
 
