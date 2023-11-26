@@ -12,6 +12,7 @@ public:
     virtual void run() override;
     virtual void move(double speed) override;
     virtual void rotate(double speed) override;
+    virtual void moveTarget(double stopDistance) override;
 
     bool readColour();
 

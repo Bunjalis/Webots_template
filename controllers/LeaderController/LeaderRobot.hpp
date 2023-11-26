@@ -15,6 +15,7 @@ public:
     virtual void run() override;
     virtual void move(double speed) override;
     virtual void rotate(double speed) override;
+    virtual void moveTarget(stopDistance) override;
 
     void scanLidarData();
     void fileOutput(const std::string& output);

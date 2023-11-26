@@ -73,6 +73,30 @@ void ScoutRobot::rotate(double speed) {
   rightMotor->setVelocity(speed);
 }
 
+void ScoutRobot::moveTarget(stopDistance) {
+    while (step(TIME_STEP) != -1 && abs(currentYaw - targetYaw) >= 1 ) {
+        updateCurrentPosition();
+        rotate(0.5);
+    }
+    while (step(TIME_STEP) != -1 && distance() >= stopDistance) {
+        updateCurrentPosition();
+        //std::cout << "distance: " << distance() << "\n";
+        move(6);
+        if (distanceSensor->getMinValue <= 0.3) {
+          int steps {90};
+          for (int i {0}; i < steps && step(TIME_STEP) != -1 && i <; i++) {
+            rotate(1);
+          }
+          steps = 90;
+          for (int i {0}; i < steps && step(TIME_STEP) != -1 && i <; i++) {
+            rotate(0);
+            move(3);
+          }
+          moveToTarget(0.5);
+        }
+    }
+}
+
 
 bool ScoutRobot::readColour () {
     //std::cout << "CHECKING COLOUR\n";

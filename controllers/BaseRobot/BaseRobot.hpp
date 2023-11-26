@@ -37,6 +37,7 @@ public:
 	virtual void run() = 0;
 	virtual void move(double speed) = 0;
 	virtual void rotate(double speed) = 0;
+	virtual void moveTarget(double stoppingDistance) = 0;
 
 	void keyboardControl();
 	void updateCurrentPosition();
@@ -49,6 +50,7 @@ public:
 
 	double bearing();
 	double distance();
+	double getHeading();
 
 protected:
 	std::string ID{};

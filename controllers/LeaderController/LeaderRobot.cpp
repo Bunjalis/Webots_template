@@ -136,6 +136,18 @@ void LeaderRobot::rotate(double speed) {
   frontRightMotor->setVelocity(speed);
 }
 
+void LeaderRobot::moveTarget(stopDistance) {
+    while (step(TIME_STEP) != -1 && abs(currentYaw - targetYaw) >= 1 ) {
+        updateCurrentPosition();
+        rotate(0.5);
+    }
+    while (step(TIME_STEP) != -1 && distance() >= stopDistance) {
+        updateCurrentPosition();
+        //std::cout << "distance: " << distance() << "\n";
+        move(6);
+    }
+}
+
 void LeaderRobot::scanLidarData() {
   rotate(1);
   int steps {310};

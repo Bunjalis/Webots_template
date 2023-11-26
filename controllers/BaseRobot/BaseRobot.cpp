@@ -36,39 +36,13 @@ void BaseRobot::setTargetPosition(double x, double y){
 }
 
 bool BaseRobot::moveToTarget(double stopDistance) {
-    updateCurrentPosition();
-    if (targetPositionX >= currentPositionX && targetPositionY >= currentPositionY) {
-        targetYaw = 180/PI * atan((targetPositionX - currentPositionX) / (targetPositionY - currentPositionY));
-    }
-    else if (targetPositionX < currentPositionX && targetPositionY < currentPositionY) {
-        targetYaw = 180 + 180/PI * atan((currentPositionX - targetPositionX) / (currentPositionY - targetPositionY));
-    }
-    else if (targetPositionX >= currentPositionX && targetPositionY < currentPositionY) {
-        targetYaw = 90 + 180/PI * atan((currentPositionY - targetPositionY) / (targetPositionX - currentPositionX));
-    }
-    else if (targetPositionX < currentPositionX && targetPositionY >= currentPositionY) {
-        targetYaw = 360 - 180/PI * atan((currentPositionX - targetPositionX) / (targetPositionY - currentPositionY));
-    }
-    targetYaw = (targetYaw + 180);
-    if (targetYaw >= 360) {
-        targetYaw -= 360.0;
-    }
+    getHeading();
     // std::cout << "robot: " << ID << "has a targe"<<"\n";
     // std::cout << "current yaw is: " << currentYaw << "\n";
     //std::cout << "robot: " << ID << " target yaw is: " << targetYaw << "\n";
     //std::cout <<"robot: " << ID << " current yaw is: " << currentYaw << "\n";
+    moveTarget(stopDistance);
 
-        
-    while (step(TIME_STEP) != -1 && abs(currentYaw - targetYaw) >= 1 ) {
-        updateCurrentPosition();
-        rotate(0.5);
-    }
-    while (step(TIME_STEP) != -1 && distance() >= stopDistance) {
-        updateCurrentPosition();
-        
-        //std::cout << "distance: " << distance() << "\n";
-        move(6);
-    }
     if (distance() < stopDistance) {
         return true;
     }
@@ -126,4 +100,24 @@ double BaseRobot::distance() {
     double determinant {pow(currentPositionX - targetPositionX, 2) + pow(currentPositionY - targetPositionY, 2)};
     double res {sqrt(determinant)};
     return res;
+}
+
+void BaseRobot::getHeading() {
+    updateCurrentPosition();
+    if (targetPositionX >= currentPositionX && targetPositionY >= currentPositionY) {
+        targetYaw = 180/PI * atan((targetPositionX - currentPositionX) / (targetPositionY - currentPositionY));
+    }
+    else if (targetPositionX < currentPositionX && targetPositionY < currentPositionY) {
+        targetYaw = 180 + 180/PI * atan((currentPositionX - targetPositionX) / (currentPositionY - targetPositionY));
+    }
+    else if (targetPositionX >= currentPositionX && targetPositionY < currentPositionY) {
+        targetYaw = 90 + 180/PI * atan((currentPositionY - targetPositionY) / (targetPositionX - currentPositionX));
+    }
+    else if (targetPositionX < currentPositionX && targetPositionY >= currentPositionY) {
+        targetYaw = 360 - 180/PI * atan((currentPositionX - targetPositionX) / (targetPositionY - currentPositionY));
+    }
+    targetYaw = (targetYaw + 180);
+    if (targetYaw >= 360) {
+        targetYaw -= 360.0;
+    }
 }
