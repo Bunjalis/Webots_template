@@ -10,4 +10,5 @@ build/release/ScoutController.o: ScoutController.cpp ScoutRobot.hpp \
  C:\Program\ Files\Webots/include/controller/cpp/webots/Motor.hpp \
  C:\Program\ Files\Webots/include/controller/cpp/webots/Compass.hpp \
  C:\Program\ Files\Webots/include/controller/cpp/webots/Camera.hpp \
- C:/Program\ Files/Webots/include/controller/c/webots/camera_recognition_object.h
+ C:/Program\ Files/Webots/include/controller/c/webots/camera_recognition_object.h \
+ C:\Program\ Files\Webots/include/controller/cpp/webots/distanceSensor.hpp

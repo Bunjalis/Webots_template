@@ -27,6 +27,7 @@ ScoutRobot::ScoutRobot()
       rightMotor->setPosition(INFINITY);
       camera->enable(TIME_STEP);
       distanceSensor->enable(TIME_STEP);
+      camera->recognitionEnable(TIME_STEP);
      }
 
      
@@ -119,7 +120,7 @@ void ScoutRobot::moveTarget(double stopDistance) {
 
 bool ScoutRobot::readColour () {
     //std::cout << "CHECKING COLOUR\n";
-    camera->recognitionEnable(TIME_STEP);
+    
     if (camera->getRecognitionNumberOfObjects() != 0) {
         //std::cout << "COLOUR = GREEN\n";
         sendMessage("0", ID, "green");

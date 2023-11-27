@@ -33,3 +33,45 @@ Robot 2 has identified a red OOI
 Robot 3 has identified a green OOI
 Green OOI has been found, moving to x: -3.698695 y: 4.693992
 Successfully arrived at the green OOI
+OOI discovered at x:<-4.056215> y:<-3.823886>
+OOI discovered at x:<-3.122684> y:<-3.851143>
+OOI discovered at x:<-2.191617> y:<-3.873414>
+Target pose x:<-2.191617> y:<-3.873414> sent to robot <3>
+Target pose x:<-3.122684> y:<-3.851143> sent to robot <2>
+Target pose x:<-4.056215> y:<-3.823886> sent to robot <1>
+OOI discovered at x:<-1.998512> y:<-1.900097>
+OOI discovered at x:<1.901892> y:<-1.981120>
+OOI discovered at x:<2.004899> y:<1.900395>
+Target pose x:<2.004899> y:<1.900395> sent to robot <3>
+Target pose x:<1.901892> y:<-1.981120> sent to robot <2>
+Target pose x:<-1.998512> y:<-1.900097> sent to robot <1>
+Robot 2 has identified a red OOI
+Robot 1 has identified a red OOI
+Robot 3 has identified a red OOI
+OOI discovered at x:<-1.998512> y:<-1.900097>
+OOI discovered at x:<1.901892> y:<-1.981120>
+OOI discovered at x:<2.004899> y:<1.900395>
+Target pose x:<2.004899> y:<1.900395> sent to robot <3>
+Target pose x:<1.901892> y:<-1.981120> sent to robot <2>
+Target pose x:<-1.998512> y:<-1.900097> sent to robot <1>
+Robot 2 has identified a green OOI
+Green OOI has been found, moving to x: 1.901892 y: -1.981120
+Successfully arrived at the green OOI
+OOI discovered at x:<-2.006326> y:<-1.900519>
+OOI discovered at x:<1.901089> y:<-1.987073>
+OOI discovered at x:<2.012651> y:<1.901099>
+Target pose x:<2.012651> y:<1.901099> sent to robot <3>
+Target pose x:<1.901089> y:<-1.987073> sent to robot <2>
+Target pose x:<-2.006326> y:<-1.900519> sent to robot <1>
+Robot 2 has identified a red OOI
+Robot 1 has identified a red OOI
+Robot 3 has identified a red OOI
+OOI discovered at x:<-1.998512> y:<-1.900097>
+OOI discovered at x:<1.901892> y:<-1.981120>
+OOI discovered at x:<2.004899> y:<1.900395>
+Target pose x:<2.004899> y:<1.900395> sent to robot <3>
+Target pose x:<1.901892> y:<-1.981120> sent to robot <2>
+Target pose x:<-1.998512> y:<-1.900097> sent to robot <1>
+Robot 2 has identified a green OOI
+Green OOI has been found, moving to x: 1.901892 y: -1.981120
+Successfully arrived at the green OOI
